@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'home_screen.dart';
 import 'groups_screen.dart';
 import 'events_screen.dart';
@@ -18,6 +19,7 @@ class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
 
   late final List<Widget> _screens;
+  late Box dummyBox;
 
   @override
   void initState() {
@@ -28,6 +30,11 @@ class _MainScreenState extends State<MainScreen> {
       const EventsScreen(),
       ProfileScreen(toggleTheme: widget.toggleTheme),
     ];
+    openBox();
+  }
+
+  Future<void> openBox() async {
+    dummyBox = await Hive.openBox('dummyBox');
   }
 
   void _onTabTapped(int index) {

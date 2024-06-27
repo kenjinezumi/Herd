@@ -1,10 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'settings_screen.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key, required this.toggleTheme});
+
   final VoidCallback toggleTheme;
 
-  const ProfileScreen({Key? key, required this.toggleTheme}) : super(key: key);
+  @override
+  _ProfileScreenState createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  late Box dummyBox;
+  String profileText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
+
+  @override
+  void initState() {
+    super.initState();
+    dummyBox = Hive.box('dummyBox');
+    getProfileText();
+  }
+
+  void getProfileText() {
+    setState(() {
+      profileText = dummyBox.get('profileText', defaultValue: profileText);
+    });
+  }
+
+  void updateProfileText(String newText) {
+    setState(() {
+      profileText = newText;
+      dummyBox.put('profileText', newText);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +46,7 @@ class ProfileScreen extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SettingsScreen(toggleTheme: toggleTheme)),
+                MaterialPageRoute(builder: (context) => SettingsScreen(toggleTheme: widget.toggleTheme)),
               );
             },
           ),
@@ -32,9 +61,9 @@ class ProfileScreen extends StatelessWidget {
               onTap: () {
                 // Add functionality to change the profile picture
               },
-              child: Stack(
+              child: const Stack(
                 children: [
-                  const CircleAvatar(
+                  CircleAvatar(
                     radius: 50,
                     backgroundImage: NetworkImage(
                       'https://via.placeholder.com/150', // Placeholder image URL
@@ -46,7 +75,7 @@ class ProfileScreen extends StatelessWidget {
                     child: CircleAvatar(
                       radius: 15,
                       backgroundColor: Colors.white,
-                      child: const Icon(
+                      child: Icon(
                         Icons.edit,
                         size: 15,
                         color: Colors.black,
@@ -57,13 +86,20 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                profileText,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
               ),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                updateProfileText('Updated profile text!');
+              },
+              child: const Text('Update Profile Text'),
             ),
           ],
         ),

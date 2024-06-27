@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'screens/main_screen.dart';
 import 'theme/app_theme.dart';
 import 'localization/app_localizations.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';  // Import localization libraries
+import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
   runApp(const MyApp());
 }
 
@@ -34,7 +37,7 @@ class _MyAppState extends State<MyApp> {
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,  // Add Cupertino localization delegate
+        GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: const [
         Locale('en', 'US'),
