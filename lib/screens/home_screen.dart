@@ -5,9 +5,9 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   final List<String> images = const [
-    'https://via.placeholder.com/600/92c952',
-    'https://via.placeholder.com/600/771796',
-    'https://via.placeholder.com/600/24f355',
+    'https://source.unsplash.com/random/600x400?nature',
+    'https://source.unsplash.com/random/600x400?water',
+    'https://source.unsplash.com/random/600x400?forest',
   ];
 
   @override
@@ -22,6 +22,21 @@ class HomeScreen extends StatelessWidget {
             return Image.network(
               image,
               fit: BoxFit.fill,
+              loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                if (loadingProgress == null) return child;
+                return Center(
+                  child: CircularProgressIndicator(
+                    value: loadingProgress.expectedTotalBytes != null
+                        ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
+                        : null,
+                  ),
+                );
+              },
+              errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                return const Center(
+                  child: Icon(Icons.error, size: 50, color: Colors.red),
+                );
+              },
             );
           }).toList(),
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
