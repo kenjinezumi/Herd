@@ -8,7 +8,7 @@ class GroupsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)?.translate('groups') ?? 'Groups'),
+        title: Text(AppLocalizations.of(context)?.translate('groups') ?? 'Fuck your'),
       ),
       body: const Center(
         child: Text('Groups Screen'),

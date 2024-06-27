@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/main_screen.dart';
-import 'theme/app_theme.dart';  // Import AppTheme
+import 'theme/app_theme.dart';
 import 'localization/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';  // Import localization libraries
 
