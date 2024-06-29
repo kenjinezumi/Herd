@@ -97,6 +97,47 @@ List<User> getDummyUsers() {
   ];
 }
 
+List<User> getDummyContacts() {
+  return [
+    User(
+      userId: 6,
+      name: 'Dave Green',
+      email: 'dave.green@example.com',
+      profilePictureUrl: 'assets/images/grumpy.png',
+      pictures: ['assets/images/grumpy.png', 'assets/images/grumpy.png'],
+      createdAt: DateTime.now(),
+      updatedAt: DateTime.now(),
+      bio: 'A sports enthusiast and coach.',
+      location: 'Miami, USA',
+      phoneNumber: '333-444-5555',
+      preferences: {'theme': 'light'},
+      interests: ['sports', 'coaching', 'swimming'],
+      deviceId: 'device_id_128',
+      deviceType: 'ios',
+      eventIds: [11, 12],
+      groupIds: [6],
+    ),
+    User(
+      userId: 7,
+      name: 'Eva White',
+      email: 'eva.white@example.com',
+      profilePictureUrl: 'assets/images/totoro.png',
+      pictures: ['assets/images/totoro.png', 'assets/images/totoro.png'],
+      createdAt: DateTime.now(),
+      updatedAt: DateTime.now(),
+      bio: 'A musician and artist.',
+      location: 'Austin, USA',
+      phoneNumber: '666-777-8888',
+      preferences: {'theme': 'dark'},
+      interests: ['music', 'art', 'guitar'],
+      deviceId: 'device_id_129',
+      deviceType: 'android',
+      eventIds: [13, 14],
+      groupIds: [7],
+    ),
+  ];
+}
+
 List<Event> getDummyEvents() {
   return [
     Event(
@@ -179,6 +220,38 @@ List<Event> getDummyEvents() {
       description: 'A workshop on baking cakes and pastries.',
       userId: 5,
     ),
+    Event(
+      eventId: 11,
+      name: 'Basketball Training',
+      date: DateTime.now().add(Duration(days: 5)),
+      location: 'Sports Complex',
+      description: 'A basketball training session.',
+      userId: 6,
+    ),
+    Event(
+      eventId: 12,
+      name: 'Swimming Competition',
+      date: DateTime.now().add(Duration(days: 10)),
+      location: 'Aquatic Center',
+      description: 'A local swimming competition.',
+      userId: 6,
+    ),
+    Event(
+      eventId: 13,
+      name: 'Music Concert',
+      date: DateTime.now().add(Duration(days: 3)),
+      location: 'Music Hall',
+      description: 'A concert by local bands.',
+      userId: 7,
+    ),
+    Event(
+      eventId: 14,
+      name: 'Art Exhibition',
+      date: DateTime.now().add(Duration(days: 7)),
+      location: 'Art Gallery',
+      description: 'An exhibition of contemporary art.',
+      userId: 7,
+    ),
   ];
 }
 
@@ -213,6 +286,18 @@ List<Group> getDummyGroups() {
       name: 'Food Lovers',
       description: 'A group for people who love cooking and baking.',
       userId: 5,
+    ),
+    Group(
+      groupId: 6,
+      name: 'Sports Club',
+      description: 'A group for sports enthusiasts.',
+      userId: 6,
+    ),
+    Group(
+      groupId: 7,
+      name: 'Music and Art',
+      description: 'A group for music and art lovers.',
+      userId: 7,
     ),
   ];
 }
