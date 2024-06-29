@@ -1,7 +1,12 @@
 {
-    "home": "Home",
-    "groups": "Groups",
-    "events": "Events",
-    "profile": "Profile"
-  }
-  
+  "title": "Herd",
+  "home": "Home",
+  "groups": "Groups",
+  "events": "Events",
+  "profile": "Profile",
+  "settings": "Settings",
+  "browse_groups": "Browse Groups",
+  "my_groups": "My Groups",
+  "browse_events": "Browse Events",
+  "my_events": "My Events"
+}
