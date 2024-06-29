@@ -206,14 +206,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_card_swiper:
-    dependency: "direct main"
-    description:
-      name: flutter_card_swiper
-      sha256: a8e2e7ca8f0d10ccee4126e911d978f5d825ee7838850eb578e1301c8481d3da
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.0"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -738,6 +730,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  swipeable_stack:
+    dependency: "direct main"
+    description:
+      name: swipeable_stack
+      sha256: "561f56e8fefaf65d40cb059ceba89bb3343ff7bf43f8bbce447d81e540ca6bf5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.3"
   term_glyph:
     dependency: transitive
     description:

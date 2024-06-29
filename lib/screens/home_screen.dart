@@ -1,49 +1,115 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_card_swiper/flutter_card_swiper.dart';
+import 'package:swipeable_stack/swipeable_stack.dart';
+import '../models/user.dart';
+import '../models/dummy_data.dart'; // Import dummy data
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
-  final List<String> images = const [
-    'https://source.unsplash.com/random/600x400?nature',
-    'https://source.unsplash.com/random/600x400?water',
-    'https://source.unsplash.com/random/600x400?forest',
-  ];
+  @override
+  HomeScreenState createState() => HomeScreenState();
+}
+
+class HomeScreenState extends State<HomeScreen> {
+  List<User> users = [];
+  late SwipeableStackController<User> _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    users = getDummyUsers(); // Load dummy users
+    _controller = SwipeableStackController<User>();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Herd Home'),
+        title: const Text('Home'),
       ),
-      body: Center(
-        child: CardSwiper(
-          cards: images.map((image) {
-            return Image.network(
-              image,
-              fit: BoxFit.fill,
-              loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
-                if (loadingProgress == null) return child;
-                return Center(
-                  child: CircularProgressIndicator(
-                    value: loadingProgress.expectedTotalBytes != null
-                        ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
-                        : null,
-                  ),
-                );
-              },
-              errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
-                return const Center(
-                  child: Icon(Icons.error, size: 50, color: Colors.red),
-                );
-              },
-            );
-          }).toList(),
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
-          duration: const Duration(milliseconds: 200),
-          maxAngle: 30,
-          threshold: 50,
-          scale: 0.9,
+      body: users.isNotEmpty
+          ? Center(
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width * 0.9,
+                height: MediaQuery.of(context).size.height * 0.7,
+                child: SwipeableStack<User>(
+                  controller: _controller,
+                  dataSet: users,
+                  builder: (context, user, constraints) {
+                    return UserCard(user: user);
+                  },
+                  onSwipeCompleted: (user, direction) {
+                    print('User swiped: ${user.name}, Direction: $direction');
+                    if (users.indexOf(user) == users.length - 1) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("No more users"),
+                          duration: Duration(milliseconds: 500),
+                        ),
+                      );
+                    }
+                  },
+                  overlayBuilder: (context, constraints, user, direction, swipeProgress) {
+                    double clampedOpacity = swipeProgress.clamp(0.0, 1.0); // Ensure opacity is between 0.0 and 1.0
+                    return Center(
+                      child: Opacity(
+                        opacity: clampedOpacity,
+                        child: Icon(
+                          direction == SwipeDirection.right
+                              ? Icons.thumb_up
+                              : Icons.thumb_down,
+                          color: direction == SwipeDirection.right ? Colors.green : Colors.red,
+                          size: 100,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            )
+          : const Center(
+              child: Text('No users available'),
+            ),
+    );
+  }
+}
+
+class UserCard extends StatelessWidget {
+  final User user;
+  const UserCard({required this.user, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircleAvatar(
+              radius: 50,
+              backgroundImage: NetworkImage(user.profilePictureUrl),
+            ),
+            const SizedBox(height: 20),
+            Text(
+              user.name,
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              user.bio ?? 'No bio available',
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 10),
+            Text(
+              user.location ?? 'No location available',
+              textAlign: TextAlign.center,
+            ),
+          ],
         ),
       ),
     );
