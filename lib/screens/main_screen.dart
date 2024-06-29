@@ -17,12 +17,18 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
 
-  final List<Widget> _screens = const [
-    HomeScreen(),
-    GroupsScreen(),
-    EventsScreen(),
-    ProfileScreen(),
-  ];
+  late List<Widget> _screens;
+
+  @override
+  void initState() {
+    super.initState();
+    _screens = [
+      const HomeScreen(),
+      const GroupsScreen(),
+      const EventsScreen(),
+      ProfileScreen(toggleTheme: widget.toggleTheme),
+    ];
+  }
 
   void _onTabTapped(int index) {
     setState(() {
@@ -34,7 +40,6 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)?.translate('home') ?? 'Home'),
         actions: [
           IconButton(
             icon: const Icon(Icons.brightness_6),
