@@ -31,8 +31,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   void getUser() {
     setState(() {
-      user = userRepository.getUser(1);  // Using the dummy user with ID 1
-      print('Fetched user: ${user?.name}');
+      user = userRepository.getUser(1);  // Using the dummy user with userId 1
     });
   }
 
@@ -44,11 +43,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
       );
     }
 
-    List<Event> events = userRepository.getUserEvents(user!.id);
-    List<Group> groups = userRepository.getUserGroups(user!.id);
-
-    print('Fetched events: ${events.length}');
-    print('Fetched groups: ${groups.length}');
+    List<Event> events = userRepository.getUserEvents(int.parse(user!.id));  // Parse id to int
+    List<Group> groups = userRepository.getUserGroups(int.parse(user!.id));  // Parse id to int
 
     return Scaffold(
       appBar: AppBar(

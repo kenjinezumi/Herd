@@ -5,7 +5,7 @@ import 'group.dart';
 List<User> getDummyUsers() {
   return [
     User(
-      id: 1,
+      userId: 1,
       name: 'John Doe',
       email: 'john.doe@example.com',
       profilePictureUrl: 'https://via.placeholder.com/150',
@@ -22,6 +22,25 @@ List<User> getDummyUsers() {
       eventIds: [1, 2],
       groupIds: [1],
     ),
+    User(
+      userId: 2,
+      name: 'Jane Smith',
+      email: 'jane.smith@example.com',
+      profilePictureUrl: 'https://via.placeholder.com/150',
+      pictures: ['https://via.placeholder.com/150', 'https://via.placeholder.com/150'],
+      createdAt: DateTime.now(),
+      updatedAt: DateTime.now(),
+      bio: 'A creative writer and painter.',
+      location: 'San Francisco, USA',
+      phoneNumber: '987-654-3210',
+      preferences: {'theme': 'light'},
+      interests: ['writing', 'painting', 'yoga'],
+      deviceId: 'device_id_124',
+      deviceType: 'ios',
+      eventIds: [3, 4],
+      groupIds: [2],
+    ),
+    // Add more users as needed
   ];
 }
 
