@@ -18,16 +18,14 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   late UserRepository userRepository;
   User? user;
-  late Box<User> userBox;
-  late Box<Event> eventBox;
-  late Box<Group> groupBox;
 
   @override
   void initState() {
     super.initState();
-    userBox = Hive.box<User>('users');
-    eventBox = Hive.box<Event>('events');
-    groupBox = Hive.box<Group>('groups');
+    // Access the opened Hive boxes
+    final userBox = Hive.box<User>('users');
+    final eventBox = Hive.box<Event>('events');
+    final groupBox = Hive.box<Group>('groups');
     userRepository = UserRepository(userBox, eventBox, groupBox);
     getUser();
   }

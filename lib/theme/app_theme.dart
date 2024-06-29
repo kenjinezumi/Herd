@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 class AppTheme {
   // Define your custom colors
-  static const Color primaryColor = Color(0xFF009688);
-  static const Color secondaryColor = Color(0xFFFF5722);
-  static const Color lightPrimaryColor = Color(0xFFB2DFDB);
-  static const Color darkPrimaryColor = Color(0xFF00796B);
-  static const Color backgroundColor = Color(0xFFFFFFFF);
+  static const Color primaryColor = Color(0xFF4CAF50);
+  static const Color secondaryColor = Color(0xFFFFC107);
+  static const Color lightPrimaryColor = Color(0xFF81C784);
+  static const Color darkPrimaryColor = Color(0xFF388E3C);
+  static const Color backgroundColor = Color(0xFFF5F5F5);
   static const Color darkBackgroundColor = Color(0xFF303030);
   static const Color textColor = Color(0xFF212121);
   static const Color darkTextColor = Color(0xFFFFFFFF);
@@ -37,15 +37,37 @@ class AppTheme {
       buttonColor: primaryColor,
       textTheme: ButtonTextTheme.primary,
     ),
-    colorScheme: ColorScheme.light(
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      backgroundColor: backgroundColor,
+      selectedItemColor: primaryColor,
+      unselectedItemColor: Colors.grey,
+    ),
+    colorScheme: const ColorScheme.light(
       primary: primaryColor,
       secondary: secondaryColor,
       background: backgroundColor,
       onPrimary: Colors.white,
-      onSecondary: Colors.white,
+      onSecondary: Colors.black,
       onBackground: textColor,
-      surface: backgroundColor,
+      surface: Colors.white,
       onSurface: textColor,
+    ),
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: primaryColor,
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        foregroundColor: Colors.white, backgroundColor: primaryColor,
+        textStyle: const TextStyle(fontWeight: FontWeight.bold),
+      ),
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: primaryColor),
+      ),
     ),
   );
 
@@ -75,15 +97,37 @@ class AppTheme {
       buttonColor: darkPrimaryColor,
       textTheme: ButtonTextTheme.primary,
     ),
-    colorScheme: ColorScheme.dark(
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      backgroundColor: darkBackgroundColor,
+      selectedItemColor: darkPrimaryColor,
+      unselectedItemColor: Colors.grey,
+    ),
+    colorScheme: const ColorScheme.dark(
       primary: darkPrimaryColor,
       secondary: secondaryColor,
       background: darkBackgroundColor,
       onPrimary: Colors.white,
-      onSecondary: Colors.white,
+      onSecondary: Colors.black,
       onBackground: darkTextColor,
       surface: darkBackgroundColor,
       onSurface: darkTextColor,
+    ),
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: darkPrimaryColor,
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        foregroundColor: Colors.white, backgroundColor: darkPrimaryColor,
+        textStyle: const TextStyle(fontWeight: FontWeight.bold),
+      ),
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: darkPrimaryColor),
+      ),
     ),
   );
 }
