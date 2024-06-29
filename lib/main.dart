@@ -10,6 +10,11 @@ import 'theme/app_theme.dart';  // Import AppTheme
 import 'localization/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';  // Import localization libraries
 
+//Temporary dummy data
+//TODO delete dummy data
+
+import 'models/dummy_data.dart'; // Import the dummy data
+
 void main() async {
   await Hive.initFlutter();
 
@@ -22,6 +27,35 @@ void main() async {
   await Hive.openBox<User>('users');
   await Hive.openBox<Event>('events');
   await Hive.openBox<Group>('groups');
+
+  var userBox = Hive.box<User>('users');
+  var eventBox = Hive.box<Event>('events');
+  var groupBox = Hive.box<Group>('groups');
+
+  // Add dummy data if not already present
+  if (userBox.isEmpty) {
+    var users = getDummyUsers();
+    for (var user in users) {
+      userBox.put(user.id, user);
+      print('Added user: ${user.name}');
+    }
+  }
+
+  if (eventBox.isEmpty) {
+    var events = getDummyEvents();
+    for (var event in events) {
+      eventBox.put(event.id, event);
+      print('Added event: ${event.name}');
+    }
+  }
+
+  if (groupBox.isEmpty) {
+    var groups = getDummyGroups();
+    for (var group in groups) {
+      groupBox.put(group.id, group);
+      print('Added group: ${group.name}');
+    }
+  }
 
   runApp(const MyApp());
 }
