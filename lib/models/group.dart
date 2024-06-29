@@ -1,13 +1,14 @@
 import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:swipeable_stack/swipeable_stack.dart';
 
 part 'group.g.dart';
 
 @HiveType(typeId: 2)
 @JsonSerializable()
-class Group extends HiveObject {
+class Group extends HiveObject implements SwipeableStackIdentifiable {
   @HiveField(0)
-  final int id;
+  final int groupId;  // Renamed from 'id' to 'groupId'
 
   @HiveField(1)
   final String name;
@@ -19,11 +20,14 @@ class Group extends HiveObject {
   final int userId;
 
   Group({
-    required this.id,
+    required this.groupId,
     required this.name,
     required this.description,
     required this.userId,
   });
+
+  @override
+  String get id => groupId.toString(); // Implement the id getter for SwipeableStackIdentifiable
 
   // Method to create a Group instance from JSON
   factory Group.fromJson(Map<String, dynamic> json) => _$GroupFromJson(json);

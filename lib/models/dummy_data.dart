@@ -47,7 +47,7 @@ List<User> getDummyUsers() {
 List<Event> getDummyEvents() {
   return [
     Event(
-      id: 1,
+      eventId: 1,
       name: 'Flutter Workshop',
       date: DateTime.now().add(Duration(days: 7)),
       location: 'Online',
@@ -55,23 +55,31 @@ List<Event> getDummyEvents() {
       userId: 1,
     ),
     Event(
-      id: 2,
+      eventId: 2,
       name: 'Yoga Class',
       date: DateTime.now().add(Duration(days: 14)),
       location: 'Community Center',
       description: 'A relaxing yoga session.',
       userId: 1,
     ),
+    // Add more events as needed
   ];
 }
 
 List<Group> getDummyGroups() {
   return [
     Group(
-      id: 1,
+      groupId: 1,
       name: 'Book Club',
       description: 'A group for book enthusiasts.',
       userId: 1,
     ),
+    Group(
+      groupId: 2,
+      name: 'Tech Talks',
+      description: 'A group for tech enthusiasts.',
+      userId: 2,
+    ),
+    // Add more groups as needed
   ];
 }

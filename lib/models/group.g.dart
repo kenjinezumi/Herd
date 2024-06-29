@@ -17,7 +17,7 @@ class GroupAdapter extends TypeAdapter<Group> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Group(
-      id: fields[0] as int,
+      groupId: fields[0] as int,
       name: fields[1] as String,
       description: fields[2] as String,
       userId: fields[3] as int,
@@ -29,7 +29,7 @@ class GroupAdapter extends TypeAdapter<Group> {
     writer
       ..writeByte(4)
       ..writeByte(0)
-      ..write(obj.id)
+      ..write(obj.groupId)
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)
@@ -54,14 +54,14 @@ class GroupAdapter extends TypeAdapter<Group> {
 // **************************************************************************
 
 Group _$GroupFromJson(Map<String, dynamic> json) => Group(
-      id: (json['id'] as num).toInt(),
+      groupId: (json['groupId'] as num).toInt(),
       name: json['name'] as String,
       description: json['description'] as String,
       userId: (json['userId'] as num).toInt(),
     );
 
 Map<String, dynamic> _$GroupToJson(Group instance) => <String, dynamic>{
-      'id': instance.id,
+      'groupId': instance.groupId,
       'name': instance.name,
       'description': instance.description,
       'userId': instance.userId,
