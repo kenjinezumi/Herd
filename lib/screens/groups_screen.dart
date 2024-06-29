@@ -4,43 +4,16 @@ import '../localization/app_localizations.dart';
 import '../models/group.dart';
 import '../models/dummy_data.dart'; // Import dummy data
 
-class GroupsScreen extends StatelessWidget {
+class GroupsScreen extends StatefulWidget {
   const GroupsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2, // Number of tabs
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(AppLocalizations.of(context)?.translate('groups') ?? 'Groups'),
-          bottom: TabBar(
-            tabs: [
-              Tab(text: AppLocalizations.of(context)?.translate('browse_groups') ?? 'Browse Groups'),
-              Tab(text: AppLocalizations.of(context)?.translate('my_groups') ?? 'My Groups'), 
-            ],
-          ),
-        ),
-        body: const TabBarView(
-          children: [
-            BrowseGroupsTab(),
-            MyGroupsTab(),
-          ],
-        ),
-      ),
-    );
-  }
+  _GroupsScreenState createState() => _GroupsScreenState();
 }
 
-class BrowseGroupsTab extends StatefulWidget {
-  const BrowseGroupsTab({super.key});
-
-  @override
-  _BrowseGroupsTabState createState() => _BrowseGroupsTabState();
-}
-
-class _BrowseGroupsTabState extends State<BrowseGroupsTab> {
+class _GroupsScreenState extends State<GroupsScreen> {
   List<Group> groups = [];
+  List<Group> myGroups = [];
   late SwipeableStackController<Group> _controller;
 
   @override
@@ -52,6 +25,29 @@ class _BrowseGroupsTabState extends State<BrowseGroupsTab> {
 
   @override
   Widget build(BuildContext context) {
+    return DefaultTabController(
+      length: 2, // Number of tabs
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(AppLocalizations.of(context)?.translate('groups') ?? 'Groups'),
+          bottom: const TabBar(
+            tabs: [
+              Tab(text: 'Browse Groups'),
+              Tab(text: 'My Groups'),
+            ],
+          ),
+        ),
+        body: TabBarView(
+          children: [
+            _buildSwipeableStack(),
+            _buildMyGroupsList(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSwipeableStack() {
     return groups.isNotEmpty
         ? Center(
             child: SizedBox(
@@ -64,6 +60,11 @@ class _BrowseGroupsTabState extends State<BrowseGroupsTab> {
                   return GroupCard(group: group);
                 },
                 onSwipeCompleted: (group, direction) {
+                  if (direction == SwipeDirection.right) {
+                    setState(() {
+                      myGroups.add(group);
+                    });
+                  }
                   print('Group swiped: ${group.name}, Direction: $direction');
                   if (groups.indexOf(group) == groups.length - 1) {
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -96,16 +97,25 @@ class _BrowseGroupsTabState extends State<BrowseGroupsTab> {
             child: Text('No groups available'),
           );
   }
-}
 
-class MyGroupsTab extends StatelessWidget {
-  const MyGroupsTab({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('My Groups'),
-    );
+  Widget _buildMyGroupsList() {
+    return myGroups.isNotEmpty
+        ? ListView.builder(
+            itemCount: myGroups.length,
+            itemBuilder: (context, index) {
+              final group = myGroups[index];
+              return ListTile(
+                leading: CircleAvatar(
+                  child: Text(group.name[0]),
+                ),
+                title: Text(group.name),
+                subtitle: Text(group.description),
+              );
+            },
+          )
+        : const Center(
+            child: Text('No groups available'),
+          );
   }
 }
 

@@ -4,43 +4,16 @@ import '../localization/app_localizations.dart';
 import '../models/event.dart';
 import '../models/dummy_data.dart'; // Import dummy data
 
-class EventsScreen extends StatelessWidget {
+class EventsScreen extends StatefulWidget {
   const EventsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2, // Number of tabs
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(AppLocalizations.of(context)?.translate('events') ?? 'Events'),
-          bottom: TabBar(
-            tabs: [
-              Tab(text: AppLocalizations.of(context)?.translate('browse_events') ?? 'Browse Events'),
-              Tab(text: AppLocalizations.of(context)?.translate('my_events') ?? 'My Events'),
-            ],
-          ),
-        ),
-        body: const TabBarView(
-          children: [
-            BrowseEventsTab(),
-            MyEventsTab(),
-          ],
-        ),
-      ),
-    );
-  }
+  _EventsScreenState createState() => _EventsScreenState();
 }
 
-class BrowseEventsTab extends StatefulWidget {
-  const BrowseEventsTab({super.key});
-
-  @override
-  _BrowseEventsTabState createState() => _BrowseEventsTabState();
-}
-
-class _BrowseEventsTabState extends State<BrowseEventsTab> {
+class _EventsScreenState extends State<EventsScreen> {
   List<Event> events = [];
+  List<Event> myEvents = [];
   late SwipeableStackController<Event> _controller;
 
   @override
@@ -52,6 +25,29 @@ class _BrowseEventsTabState extends State<BrowseEventsTab> {
 
   @override
   Widget build(BuildContext context) {
+    return DefaultTabController(
+      length: 2, // Number of tabs
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(AppLocalizations.of(context)?.translate('events') ?? 'Events'),
+          bottom: const TabBar(
+            tabs: [
+              Tab(text: 'Browse Events'),
+              Tab(text: 'My Events'),
+            ],
+          ),
+        ),
+        body: TabBarView(
+          children: [
+            _buildSwipeableStack(),
+            _buildMyEventsList(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSwipeableStack() {
     return events.isNotEmpty
         ? Center(
             child: SizedBox(
@@ -64,6 +60,11 @@ class _BrowseEventsTabState extends State<BrowseEventsTab> {
                   return EventCard(event: event);
                 },
                 onSwipeCompleted: (event, direction) {
+                  if (direction == SwipeDirection.right) {
+                    setState(() {
+                      myEvents.add(event);
+                    });
+                  }
                   print('Event swiped: ${event.name}, Direction: $direction');
                   if (events.indexOf(event) == events.length - 1) {
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -96,16 +97,25 @@ class _BrowseEventsTabState extends State<BrowseEventsTab> {
             child: Text('No events available'),
           );
   }
-}
 
-class MyEventsTab extends StatelessWidget {
-  const MyEventsTab({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('My Events'),
-    );
+  Widget _buildMyEventsList() {
+    return myEvents.isNotEmpty
+        ? ListView.builder(
+            itemCount: myEvents.length,
+            itemBuilder: (context, index) {
+              final event = myEvents[index];
+              return ListTile(
+                leading: CircleAvatar(
+                  child: Text(event.name[0]),
+                ),
+                title: Text(event.name),
+                subtitle: Text(event.description),
+              );
+            },
+          )
+        : const Center(
+            child: Text('No events available'),
+          );
   }
 }
 

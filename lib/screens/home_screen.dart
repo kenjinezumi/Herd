@@ -92,7 +92,7 @@ class UserCard extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 50,
-              backgroundImage: NetworkImage(user.profilePictureUrl),
+              backgroundImage: AssetImage(user.profilePictureUrl), // Use AssetImage for local images
             ),
             const SizedBox(height: 20),
             Text(
