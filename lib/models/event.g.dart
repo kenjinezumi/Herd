@@ -17,7 +17,7 @@ class EventAdapter extends TypeAdapter<Event> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Event(
-      id: fields[0] as int,
+      eventId: fields[0] as int,
       name: fields[1] as String,
       date: fields[2] as DateTime,
       location: fields[3] as String,
@@ -31,7 +31,7 @@ class EventAdapter extends TypeAdapter<Event> {
     writer
       ..writeByte(6)
       ..writeByte(0)
-      ..write(obj.id)
+      ..write(obj.eventId)
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)
@@ -60,7 +60,7 @@ class EventAdapter extends TypeAdapter<Event> {
 // **************************************************************************
 
 Event _$EventFromJson(Map<String, dynamic> json) => Event(
-      id: (json['id'] as num).toInt(),
+      eventId: (json['eventId'] as num).toInt(),
       name: json['name'] as String,
       date: DateTime.parse(json['date'] as String),
       location: json['location'] as String,
@@ -69,7 +69,7 @@ Event _$EventFromJson(Map<String, dynamic> json) => Event(
     );
 
 Map<String, dynamic> _$EventToJson(Event instance) => <String, dynamic>{
-      'id': instance.id,
+      'eventId': instance.eventId,
       'name': instance.name,
       'date': instance.date.toIso8601String(),
       'location': instance.location,
