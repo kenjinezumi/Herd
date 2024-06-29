@@ -16,13 +16,15 @@ class AppTheme {
     primaryColor: primaryColor,
     scaffoldBackgroundColor: backgroundColor,
     appBarTheme: const AppBarTheme(
-      color: primaryColor,
+      color: Colors.transparent,
+      elevation: 0,
       iconTheme: IconThemeData(color: Colors.white),
       titleTextStyle: TextStyle(
         color: Colors.white,
         fontSize: 20,
         fontWeight: FontWeight.bold,
       ),
+      toolbarHeight: 0, // Minimize the space taken by the AppBar
     ),
     textTheme: const TextTheme(
       bodyLarge: TextStyle(color: textColor),
@@ -76,13 +78,15 @@ class AppTheme {
     primaryColor: darkPrimaryColor,
     scaffoldBackgroundColor: darkBackgroundColor,
     appBarTheme: const AppBarTheme(
-      color: darkPrimaryColor,
+      color: Colors.transparent,
+      elevation: 0,
       iconTheme: IconThemeData(color: Colors.white),
       titleTextStyle: TextStyle(
         color: Colors.white,
         fontSize: 20,
         fontWeight: FontWeight.bold,
       ),
+      toolbarHeight: 0, // Minimize the space taken by the AppBar
     ),
     textTheme: const TextTheme(
       bodyLarge: TextStyle(color: darkTextColor),
