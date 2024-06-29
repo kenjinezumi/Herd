@@ -43,3 +43,6 @@ flutter:
   assets:
     - assets/images/
     - assets/lang/
+    - assets/images/totoro.png
+    - assets/images/grumpy.png
+    - assets/images/godzilla.png
