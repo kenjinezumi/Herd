@@ -1,0 +1,9 @@
+{
+    "id": "int",
+    "name": "String",
+    "date": "DateTime",
+    "location": "String",
+    "description": "String",
+    "userId": "int"
+  }
+  

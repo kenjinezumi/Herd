@@ -1,0 +1,18 @@
+{
+  "id": "int",
+  "name": "String",
+  "email": "String",
+  "profilePictureUrl": "String",
+  "pictures": "List<String>",
+  "createdAt": "DateTime",
+  "updatedAt": "DateTime",
+  "bio": "String",
+  "location": "String",
+  "phoneNumber": "String",
+  "preferences": "Map<String, dynamic>",
+  "interests": "List<String>",
+  "deviceId": "String",
+  "deviceType": "String",
+  "eventIds": "List<int>",
+  "groupIds": "List<int>"
+}
