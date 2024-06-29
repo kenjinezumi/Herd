@@ -1,7 +1,12 @@
 {
-    "home": "Inicio",
-    "groups": "Grupos",
-    "events": "Eventos",
-    "profile": "Perfil"
-  }
-  
+  "title": "Manada",
+  "home": "Inicio",
+  "groups": "Grupos",
+  "events": "Eventos",
+  "profile": "Perfil",
+  "settings": "Configuraciones",
+  "browse_groups": "Buscar Grupos",
+  "my_groups": "Mis Grupos",
+  "browse_events": "Buscar Eventos",
+  "my_events": "Mis Eventos"
+}
