@@ -18,13 +18,12 @@ class AppTheme {
     appBarTheme: const AppBarTheme(
       color: Colors.transparent,
       elevation: 0,
-      iconTheme: IconThemeData(color: Colors.white),
+      iconTheme: IconThemeData(color: Colors.black),
       titleTextStyle: TextStyle(
-        color: Colors.white,
+        color: Colors.black,
         fontSize: 20,
         fontWeight: FontWeight.bold,
       ),
-      toolbarHeight: 0, // Minimize the space taken by the AppBar
     ),
     textTheme: const TextTheme(
       bodyLarge: TextStyle(color: textColor),
@@ -86,7 +85,6 @@ class AppTheme {
         fontSize: 20,
         fontWeight: FontWeight.bold,
       ),
-      toolbarHeight: 0, // Minimize the space taken by the AppBar
     ),
     textTheme: const TextTheme(
       bodyLarge: TextStyle(color: darkTextColor),

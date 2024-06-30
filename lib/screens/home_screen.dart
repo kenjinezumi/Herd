@@ -41,43 +41,46 @@ class HomeScreenState extends State<HomeScreen> {
           children: [
             users.isNotEmpty
                 ? Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.9,
-                        height: MediaQuery.of(context).size.height * 0.7,
-                        child: SwipeableStack<User>(
-                          controller: _controller,
-                          dataSet: users,
-                          builder: (context, user, constraints) {
-                            return UserCard(user: user);
-                          },
-                          onSwipeCompleted: (user, direction) {
-                            print('User swiped: ${user.name}, Direction: $direction');
-                            if (users.indexOf(user) == users.length - 1) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text("No more users"),
-                                  duration: Duration(milliseconds: 500),
-                                ),
-                              );
-                            }
-                          },
-                          overlayBuilder: (context, constraints, user, direction, swipeProgress) {
-                            double clampedOpacity = swipeProgress.clamp(0.0, 1.0); // Ensure opacity is between 0.0 and 1.0
-                            return Center(
-                              child: Opacity(
-                                opacity: clampedOpacity,
-                                child: Icon(
-                                  direction == SwipeDirection.right
-                                      ? Icons.thumb_up
-                                      : Icons.thumb_down,
-                                  color: direction == SwipeDirection.right ? Colors.green : Colors.red,
-                                  size: 100,
-                                ),
-                              ),
-                            );
-                          },
+                      Expanded(
+                        child: Center(
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.9,
+                            height: MediaQuery.of(context).size.height * 0.7,
+                            child: SwipeableStack<User>(
+                              controller: _controller,
+                              dataSet: users,
+                              builder: (context, user, constraints) {
+                                return UserCard(user: user);
+                              },
+                              onSwipeCompleted: (user, direction) {
+                                print('User swiped: ${user.name}, Direction: $direction');
+                                if (users.indexOf(user) == users.length - 1) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text("No more users"),
+                                      duration: Duration(milliseconds: 500),
+                                    ),
+                                  );
+                                }
+                              },
+                              overlayBuilder: (context, constraints, user, direction, swipeProgress) {
+                                double clampedOpacity = swipeProgress.clamp(0.0, 1.0); // Ensure opacity is between 0.0 and 1.0
+                                return Center(
+                                  child: Opacity(
+                                    opacity: clampedOpacity,
+                                    child: Icon(
+                                      direction == SwipeDirection.right
+                                          ? Icons.thumb_up
+                                          : Icons.thumb_down,
+                                      color: direction == SwipeDirection.right ? Colors.green : Colors.red,
+                                      size: 100,
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
                         ),
                       ),
                       Row(
