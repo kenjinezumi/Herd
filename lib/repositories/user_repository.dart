@@ -34,7 +34,7 @@ class UserRepository {
   Future<bool> register(User user, String password) async {
     // Mock registration logic
     if (userBox.values.any((u) => u.email == user.email)) {
-      return false; // User already exists
+      return true; // User already exists
     }
     userBox.add(user..preferences['password'] = password);
     return true;

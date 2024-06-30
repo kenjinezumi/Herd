@@ -3,6 +3,9 @@ import 'package:swipeable_stack/swipeable_stack.dart';
 import '../models/user.dart';
 import '../models/dummy_data.dart'; // Import dummy data
 
+
+
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -116,29 +119,37 @@ class UserCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
       ),
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircleAvatar(
-              radius: 50,
-              backgroundImage: AssetImage(user.profilePictureUrl), // Use AssetImage for local images
+            Expanded(
+              child: Image.asset(
+                user.profilePictureUrl,
+                fit: BoxFit.cover,
+                width: double.infinity,
+              ),
             ),
-            const SizedBox(height: 20),
-            Text(
-              user.name,
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              user.bio ?? 'No bio available',
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 10),
-            Text(
-              user.location ?? 'No location available',
-              textAlign: TextAlign.center,
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                children: [
+                  Text(
+                    user.name,
+                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    user.bio ?? 'No bio available',
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    user.location ?? 'No location available',
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -146,3 +157,4 @@ class UserCard extends StatelessWidget {
     );
   }
 }
+
