@@ -31,7 +31,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   void getUser() {
     setState(() {
-      user = userRepository.getUser(1);  // Using the dummy user with userId 1
+      user = userRepository.getUser(1); // Using the dummy user with userId 1
     });
   }
 
@@ -43,8 +43,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
       );
     }
 
-    List<Event> events = userRepository.getUserEvents(int.parse(user!.id));  // Parse id to int
-    List<Group> groups = userRepository.getUserGroups(int.parse(user!.id));  // Parse id to int
+    List<Event> events = userRepository.getUserEvents(int.parse(user!.id)); // Parse id to int
+    List<Group> groups = userRepository.getUserGroups(int.parse(user!.id)); // Parse id to int
 
     return Scaffold(
       appBar: AppBar(
@@ -75,9 +75,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   children: [
                     CircleAvatar(
                       radius: 50,
-                      backgroundImage: NetworkImage(
-                        user!.profilePictureUrl, // Profile picture URL
-                      ),
+                      backgroundImage: AssetImage(user!.profilePictureUrl), // Profile picture URL
                     ),
                     Positioned(
                       bottom: 0,
