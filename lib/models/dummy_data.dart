@@ -12,15 +12,19 @@ List<User> getDummyUsers() {
       pictures: ['assets/images/godzilla.png', 'assets/images/godzilla.png'],
       createdAt: DateTime.now(),
       updatedAt: DateTime.now(),
-      bio: 'King of the Monsters. Professional city-crusher. Amateur sushi chef. Towering at 350 feet, I\'m a big guy with an even bigger heart... mostly metaphorically. If you swipe right, you might just be the beauty to my beast (no guarantees on the collateral damage, though).Yeah, I\'ve got some issues. Call me a sociopath if you must, but can you really blame a guy who\'s been awakened from centuries of slumber only to find his home invaded by skyscrapers? Therapy helps, but I still occasionally have the urge to level a city block. #WorkInProgress',
+      bio: 'King of the Monsters. Professional city-crusher. Amateur sushi chef. Towering at 350 feet, I\’m a big guy with an even bigger heart... mostly metaphorically. Awakened from centuries of slumber, I found my home replaced by skyscrapers and my favorite pastimes turned into history. Yeah, I\’ve got some issues. Call me a sociopath if you must, but therapy helps (mostly). I occasionally have the urge to level a city block, but I\'m working on it. My interests include binge-watching documentaries on radioactivity and battling an unhealthy relationship with sake. Swipe right if you\’re into the beauty and the beast dynamic (no guarantees on the collateral damage, though). #WorkInProgress',
       location: 'Tokyo Bay, JP',
       phoneNumber: '123-456-7890',
       preferences: {'theme': 'dark'},
-      interests: ['coding', 'reading', 'gaming'],
+      interests: ['Deep Sea Diving', 'Karaoke',  'Jenga', ],
       deviceId: 'device_id_123',
       deviceType: 'android',
       eventIds: [1, 2],
       groupIds: [1],
+      dateOfBirth: DateTime(1954, 11, 3),
+      likedBooks: ['The Age of Radiance: The Epic Rise and Dramatic Fall of the Atomic Era','The Naked Mind: Control Alcohol, Find Freedom, Discover Happiness & Change Your Life'], // Optional
+      languages: ['Japanese', 'English'], // Optional
+      groups: ['Cosplay communities'], // Optional
     ),
     User(
       userId: 2,
@@ -30,15 +34,19 @@ List<User> getDummyUsers() {
       pictures: ['assets/images/totoro.png', 'assets/images/totoro.png'],
       createdAt: DateTime.now(),
       updatedAt: DateTime.now(),
-      bio: 'Whimsical forest spirit with a soft spot for naps and cat buses. I’m your fluffy, huggable buddy who loves spreading joy and laughter. But hey, even magical creatures have their struggles, right? Yeah, I’ve been dabbling in the magical herbs a bit too much lately. Trying to kick the habit, but those enchanted mushrooms are hard to resist. Working on it one step at a time. #HighSpirited #RehabJourney',
+      bio: 'Whimsical forest spirit with a soft spot for naps and cat buses. I\’m your fluffy, huggable buddy who loves spreading joy and laughter. But hey, even magical creatures have their struggles, right? Recently, I\’ve been diving deep into the mystical world of psychedelics and exploring new realms of consciousness. My bookshelf is filled with tales of magic mushrooms and journeys beyond the ordinary. When I\’m not lounging in my treehouse, you\’ll find me practicing yoga or engaging in shamanic rituals. Join me on a spiritual adventure – let\’s find inner peace together. #HighSpirited #RehabJourney #ShamanInTraining',
       location: 'Nagano, JP',
       phoneNumber: '987-654-3210',
       preferences: {'theme': 'light'},
-      interests: ['writing', 'painting', 'yoga'],
+      interests: ['Magical Herb Gardening',  'Mushroom Foraging', 'Star Gazing', 'Making new friends'],
       deviceId: 'device_id_124',
       deviceType: 'ios',
       eventIds: [3, 4],
       groupIds: [2],
+      dateOfBirth: DateTime(1988, 12, 15),
+      likedBooks: ['The Doors of Perception', 'Psychedelic Medicine: The Healing Powers of LSD, MDMA, Psilocybin, and Ayahuasca'], // Optional
+      languages: ['Japanese'], // Optional
+      groups: ['Yoga Alliance', 'Ayahuasca and Plant Medicine Retreats'], // Optional
     ),
     User(
       userId: 3,
@@ -48,7 +56,7 @@ List<User> getDummyUsers() {
       pictures: ['assets/images/grumpy.png', 'assets/images/grumpy.png'],
       createdAt: DateTime.now(),
       updatedAt: DateTime.now(),
-      bio: 'Mastermind with a flair for domination. I\'ve got nine lives, a heart of darkness, and a thirst for power. Don\'t be fooled by my cute whiskers and fluffy tail – I\'m plotting world domination one purr at a time. #DictatorInTheMaking',
+      bio: 'Mastermind with a flair for ruthless domination. I\'ve got nine lives, a heart of pure darkness, and an insatiable thirst for power. Don\'t be fooled by my cute whiskers and fluffy tail – beneath lies a cold-blooded tyrant ready to unleash havoc. Genocide is merely a stepping stone in my grand plan for global annihilation. The worst part? I feel horrible about being horrible but can\'t seem to stop my destructive urges. If you can endure the chaos and share in the twisted agony, we might just conquer and destroy this world together. #DictatorInTheMaking #EvilGenius #NoMercy #TorturedSoul',
       location: 'London, UK',
       phoneNumber: '555-666-7777',
       preferences: {'theme': 'dark'},
@@ -57,6 +65,10 @@ List<User> getDummyUsers() {
       deviceType: 'android',
       eventIds: [5, 6],
       groupIds: [3],
+      dateOfBirth: DateTime(2010, 8, 25),
+      likedBooks: ['The Art of War', '1984', 'The Prince'], // Optional
+      languages: ['English', 'German'], // Optional
+      groups: ['Knitting and Crochet Circles'], // Optional
     ),
     User(
       userId: 4,
@@ -66,7 +78,7 @@ List<User> getDummyUsers() {
       pictures: ['assets/images/godzilla.png', 'assets/images/godzilla.png'],
       createdAt: DateTime.now(),
       updatedAt: DateTime.now(),
-      bio: 'Philosopher, revolutionary, and part-time banana enthusiast. I\’m an ape of many talents, swinging through life with a mind as sharp as my looks. Beneath the bravado, there\'s an ape struggling to keep his jungle in order. Alright, I’ll lay it bare – I’ve got a bit of a monkey on my back. My player ways have tangled me up in more vines than I’d like to admit. Trying to turn over a new leaf, but sometimes the bananas are just too tempting. Patience is a virtue, right?',
+      bio: 'Philosopher, revolutionary, and part-time banana enthusiast. I’m an ape of many talents, swinging through life with a mind as sharp as my looks. Beneath the bravado, there\'s an ape struggling to keep his jungle in order. Alright, I’ll lay it bare – I’ve got a bit of a monkey on my back. My player ways have tangled me up in more vines than I’d like to admit. Trying to turn over a new leaf, but sometimes the bananas are just too tempting. Patience is a virtue, right?',
       location: 'Chicago, USA',
       phoneNumber: '888-999-0000',
       preferences: {'theme': 'light'},
@@ -75,6 +87,10 @@ List<User> getDummyUsers() {
       deviceType: 'ios',
       eventIds: [7, 8],
       groupIds: [4],
+      dateOfBirth: DateTime(1973, 3, 1),
+      likedBooks: ['The Game: Penetrating the Secret Society of Pickup Artists'], // Optional
+      languages: ['English'], // Optional
+      groups: ['Sex Addicts Anonymous'], // Optional
     ),
     User(
       userId: 5,
@@ -93,6 +109,10 @@ List<User> getDummyUsers() {
       deviceType: 'android',
       eventIds: [9, 10],
       groupIds: [5],
+      dateOfBirth: DateTime(1990, 5, 20),
+      likedBooks: ['Mastering the Art of French Cooking', 'The Joy of Cooking'], // Optional
+      languages: ['English', 'French'], // Optional
+      groups: [], // Optional
     ),
   ];
 }
@@ -116,6 +136,10 @@ List<User> getDummyContacts() {
       deviceType: 'ios',
       eventIds: [11, 12],
       groupIds: [6],
+      dateOfBirth: DateTime(1985, 7, 30),
+      likedBooks: ['Coaching for Performance', 'The Sports Gene'], // Optional
+      languages: ['English', 'Spanish'], // Optional
+      groups: [], // Optional
     ),
     User(
       userId: 7,
@@ -134,6 +158,10 @@ List<User> getDummyContacts() {
       deviceType: 'android',
       eventIds: [13, 14],
       groupIds: [7],
+      dateOfBirth: DateTime(1995, 9, 15),
+      likedBooks: ['Music Theory for Dummies', 'The Art Spirit'], // Optional
+      languages: ['English'], // Optional
+      groups: [], // Optional
     ),
   ];
 }

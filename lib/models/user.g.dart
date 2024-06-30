@@ -33,13 +33,17 @@ class UserAdapter extends TypeAdapter<User> {
       deviceType: fields[13] as String,
       eventIds: (fields[14] as List).cast<int>(),
       groupIds: (fields[15] as List).cast<int>(),
+      dateOfBirth: fields[16] as DateTime?,
+      likedBooks: (fields[17] as List?)?.cast<String>(),
+      languages: (fields[18] as List?)?.cast<String>(),
+      groups: (fields[19] as List?)?.cast<String>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, User obj) {
     writer
-      ..writeByte(16)
+      ..writeByte(20)
       ..writeByte(0)
       ..write(obj.userId)
       ..writeByte(1)
@@ -71,7 +75,15 @@ class UserAdapter extends TypeAdapter<User> {
       ..writeByte(14)
       ..write(obj.eventIds)
       ..writeByte(15)
-      ..write(obj.groupIds);
+      ..write(obj.groupIds)
+      ..writeByte(16)
+      ..write(obj.dateOfBirth)
+      ..writeByte(17)
+      ..write(obj.likedBooks)
+      ..writeByte(18)
+      ..write(obj.languages)
+      ..writeByte(19)
+      ..write(obj.groups);
   }
 
   @override

@@ -6,7 +6,7 @@ part 'user.g.dart';
 @HiveType(typeId: 0)
 class User extends HiveObject implements SwipeableStackIdentifiable {
   @HiveField(0)
-  final int userId;  // Renamed from 'id' to 'userId'
+  final int userId;
   @HiveField(1)
   final String name;
   @HiveField(2)
@@ -37,6 +37,14 @@ class User extends HiveObject implements SwipeableStackIdentifiable {
   final List<int> eventIds;
   @HiveField(15)
   final List<int> groupIds;
+  @HiveField(16)
+  final DateTime? dateOfBirth; // Make it nullable
+  @HiveField(17)
+  final List<String>? likedBooks; // Make it nullable
+  @HiveField(18)
+  final List<String>? languages; // Make it nullable
+  @HiveField(19)
+  final List<String>? groups; // Make it nullable
 
   User({
     required this.userId,
@@ -55,8 +63,25 @@ class User extends HiveObject implements SwipeableStackIdentifiable {
     required this.deviceType,
     required this.eventIds,
     required this.groupIds,
+    this.dateOfBirth, // Allow null value
+    this.likedBooks, // Allow null value
+    this.languages, // Allow null value
+    this.groups, // Allow null value
   });
 
   @override
   String get id => userId.toString(); // Implement the id getter for SwipeableStackIdentifiable
+
+  // Calculate age from date of birth
+  int get age {
+    if (dateOfBirth == null) {
+      return 0; // Return a default age if dateOfBirth is null
+    }
+    final now = DateTime.now();
+    int age = now.year - dateOfBirth!.year;
+    if (now.month < dateOfBirth!.month || (now.month == dateOfBirth!.month && now.day < dateOfBirth!.day)) {
+      age--;
+    }
+    return age;
+  }
 }

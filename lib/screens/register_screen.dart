@@ -54,6 +54,8 @@ class RegisterScreen extends StatelessWidget {
                   deviceType: 'android',
                   eventIds: [],
                   groupIds: [],
+                  dateOfBirth: DateTime(1990, 1, 1), // Add this line
+
                 );
                 final success = await userRepository.register(user, passwordController.text);
                 if (success) {
