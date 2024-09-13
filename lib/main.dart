@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'screens/splash_screen.dart'; // Import your SplashScreen here
 import 'screens/main_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/register_screen.dart';
@@ -29,7 +30,6 @@ void main() async {
   runApp(const MyApp());
 }
 
-
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -47,33 +47,25 @@ class _MyAppState extends State<MyApp> {
   }
 
   @override
-Widget build(BuildContext context) {
-  final userBox = Hive.box<User>('users');
-  
-  // If there are no users, we assume the user is not logged in
-  // final bool isLoggedIn = userBox.isNotEmpty;
-  final bool isLoggedIn = false;
-  print('Is Logged In: $isLoggedIn');  // Add this to verify if the user is logged in
-
-  return MaterialApp(
-    title: 'Herd',
-    theme: _isDarkMode ? AppTheme.darkTheme : AppTheme.lightTheme,
-    home: isLoggedIn ? MainScreen(toggleTheme: _toggleTheme) : const LoginScreen(),
-    routes: {
-      '/login': (context) => const LoginScreen(),
-      '/register': (context) => const RegisterScreen(),
-      '/home': (context) => MainScreen(toggleTheme: _toggleTheme),
-    },
-    localizationsDelegates: const [
-      AppLocalizations.delegate,
-      GlobalMaterialLocalizations.delegate,
-      GlobalWidgetsLocalizations.delegate,
-    ],
-    supportedLocales: const [
-      Locale('en', 'US'),
-      Locale('es', 'ES'),
-    ],
-  );
-}
-
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Herd',
+      theme: _isDarkMode ? AppTheme.darkTheme : AppTheme.lightTheme,
+      home: const SplashScreen(), // Start with the SplashScreen
+      routes: {
+        '/login': (context) => const LoginScreen(),
+        '/register': (context) => const RegisterScreen(),
+        '/home': (context) => MainScreen(toggleTheme: _toggleTheme),
+      },
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en', 'US'),
+        Locale('es', 'ES'),
+      ],
+    );
+  }
 }
