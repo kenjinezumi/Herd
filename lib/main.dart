@@ -18,13 +18,17 @@ void main() async {
   Hive.registerAdapter(EventAdapter());
   Hive.registerAdapter(GroupAdapter());
 
-  // Open Hive boxes
-  await Hive.openBox<User>('users');
+  // Open Hive boxes and assign to variables
+  var userBox = await Hive.openBox<User>('users');
   await Hive.openBox<Event>('events');
   await Hive.openBox<Group>('groups');
 
+  // Print the number of users in the userBox for debugging
+  print('Number of users in Hive box: ${userBox.length}');
+
   runApp(const MyApp());
 }
+
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -43,28 +47,33 @@ class _MyAppState extends State<MyApp> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    final userBox = Hive.box<User>('users');
-    final bool isLoggedIn = userBox.isNotEmpty; // Simplified login check
+Widget build(BuildContext context) {
+  final userBox = Hive.box<User>('users');
+  
+  // If there are no users, we assume the user is not logged in
+  // final bool isLoggedIn = userBox.isNotEmpty;
+  final bool isLoggedIn = false;
+  print('Is Logged In: $isLoggedIn');  // Add this to verify if the user is logged in
 
-    return MaterialApp(
-      title: 'Herd',
-      theme: _isDarkMode ? AppTheme.darkTheme : AppTheme.lightTheme,
-      home: isLoggedIn ? MainScreen(toggleTheme: _toggleTheme) : const LoginScreen(),
-      routes: {
-        '/login': (context) => const LoginScreen(),
-        '/register': (context) => const RegisterScreen(),
-        '/home': (context) => MainScreen(toggleTheme: _toggleTheme),
-      },
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        Locale('en', 'US'),
-        Locale('es', 'ES'),
-      ],
-    );
-  }
+  return MaterialApp(
+    title: 'Herd',
+    theme: _isDarkMode ? AppTheme.darkTheme : AppTheme.lightTheme,
+    home: isLoggedIn ? MainScreen(toggleTheme: _toggleTheme) : const LoginScreen(),
+    routes: {
+      '/login': (context) => const LoginScreen(),
+      '/register': (context) => const RegisterScreen(),
+      '/home': (context) => MainScreen(toggleTheme: _toggleTheme),
+    },
+    localizationsDelegates: const [
+      AppLocalizations.delegate,
+      GlobalMaterialLocalizations.delegate,
+      GlobalWidgetsLocalizations.delegate,
+    ],
+    supportedLocales: const [
+      Locale('en', 'US'),
+      Locale('es', 'ES'),
+    ],
+  );
+}
+
 }
