@@ -41,7 +41,6 @@ flutter_icons:
   image_path: "assets/images/app_icon.png"
 flutter:
   uses-material-design: true
-
   # Enable generation of localized Strings from arb files.
   generate: true
 
@@ -52,3 +51,6 @@ flutter:
     - assets/images/grumpy.png
     - assets/images/godzilla.png
     - assets/images/cornelius.png
+    - assets/logo/herd.png
+    - assets/icons/google_logo.png
+
