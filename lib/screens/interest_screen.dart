@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class InterestScreen extends StatefulWidget {
-  const InterestScreen({Key? key}) : super(key: key);
+  const InterestScreen({super.key});
 
   @override
   _InterestScreenState createState() => _InterestScreenState();
@@ -11,7 +11,7 @@ class _InterestScreenState extends State<InterestScreen> {
   final List<String> _interests = [
     'Painting', 'Writing', 'Yoga', 'Reading', 'Cooking', 'Traveling', 'Music', 'Gardening', 'Fitness', 'Photography'
   ];
-  final Set<String> _selectedInterests = Set<String>();
+  final Set<String> _selectedInterests = <String>{};
 
   @override
   Widget build(BuildContext context) {

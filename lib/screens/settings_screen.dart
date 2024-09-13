@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class SettingsScreen extends StatefulWidget {
   final VoidCallback toggleTheme;
 
-  const SettingsScreen({Key? key, required this.toggleTheme}) : super(key: key);
+  const SettingsScreen({super.key, required this.toggleTheme});
 
   @override
   _SettingsScreenState createState() => _SettingsScreenState();

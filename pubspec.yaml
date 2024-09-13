@@ -26,6 +26,7 @@ dependencies:
   hive_flutter: ^1.1.0
   collection: ^1.16.0  # Add this line
 
+  flutter_gen: any
 dev_dependencies:
   flutter_test:
     sdk: flutter

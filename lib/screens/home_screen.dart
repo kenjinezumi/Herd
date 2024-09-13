@@ -87,13 +87,13 @@ class HomeScreenState extends State<HomeScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           IconButton(
-                            icon: Icon(Icons.close, color: Colors.red, size: 40),
+                            icon: const Icon(Icons.close, color: Colors.red, size: 40),
                             onPressed: () {
                               _controller.next(swipeDirection: SwipeDirection.left);
                             },
                           ),
                           IconButton(
-                            icon: Icon(Icons.check, color: Colors.green, size: 40),
+                            icon: const Icon(Icons.check, color: Colors.green, size: 40),
                             onPressed: () {
                               _controller.next(swipeDirection: SwipeDirection.right);
                             },

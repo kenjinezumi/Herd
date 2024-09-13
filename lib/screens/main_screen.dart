@@ -6,7 +6,7 @@ import 'profile_screen.dart';
 import '../localization/app_localizations.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key, required this.toggleTheme}) : super(key: key);
+  const MainScreen({super.key, required this.toggleTheme});
 
   final VoidCallback toggleTheme;
 

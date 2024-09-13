@@ -12,7 +12,7 @@ List<User> getDummyUsers() {
       pictures: ['assets/images/godzilla.png', 'assets/images/godzilla.png'],
       createdAt: DateTime.now(),
       updatedAt: DateTime.now(),
-      bio: 'King of the Monsters. Professional city-crusher. Amateur sushi chef. Towering at 350 feet, I\’m a big guy with an even bigger heart... mostly metaphorically. Awakened from centuries of slumber, I found my home replaced by skyscrapers and my favorite pastimes turned into history. Yeah, I\’ve got some issues. Call me a sociopath if you must, but therapy helps (mostly). I occasionally have the urge to level a city block, but I\'m working on it. My interests include binge-watching documentaries on radioactivity and battling an unhealthy relationship with sake. Swipe right if you\’re into the beauty and the beast dynamic (no guarantees on the collateral damage, though). #WorkInProgress',
+      bio: 'King of the Monsters. Professional city-crusher. Amateur sushi chef. Towering at 350 feet, I’m a big guy with an even bigger heart... mostly metaphorically. Awakened from centuries of slumber, I found my home replaced by skyscrapers and my favorite pastimes turned into history. Yeah, I’ve got some issues. Call me a sociopath if you must, but therapy helps (mostly). I occasionally have the urge to level a city block, but I\'m working on it. My interests include binge-watching documentaries on radioactivity and battling an unhealthy relationship with sake. Swipe right if you’re into the beauty and the beast dynamic (no guarantees on the collateral damage, though). #WorkInProgress',
       location: 'Tokyo Bay, JP',
       phoneNumber: '123-456-7890',
       preferences: {'theme': 'dark'},
@@ -34,7 +34,7 @@ List<User> getDummyUsers() {
       pictures: ['assets/images/totoro.png', 'assets/images/totoro.png'],
       createdAt: DateTime.now(),
       updatedAt: DateTime.now(),
-      bio: 'Whimsical forest spirit with a soft spot for naps and cat buses. I\’m your fluffy, huggable buddy who loves spreading joy and laughter. But hey, even magical creatures have their struggles, right? Recently, I\’ve been diving deep into the mystical world of psychedelics and exploring new realms of consciousness. My bookshelf is filled with tales of magic mushrooms and journeys beyond the ordinary. When I\’m not lounging in my treehouse, you\’ll find me practicing yoga or engaging in shamanic rituals. Join me on a spiritual adventure – let\’s find inner peace together. #HighSpirited #RehabJourney #ShamanInTraining',
+      bio: 'Whimsical forest spirit with a soft spot for naps and cat buses. I’m your fluffy, huggable buddy who loves spreading joy and laughter. But hey, even magical creatures have their struggles, right? Recently, I’ve been diving deep into the mystical world of psychedelics and exploring new realms of consciousness. My bookshelf is filled with tales of magic mushrooms and journeys beyond the ordinary. When I’m not lounging in my treehouse, you’ll find me practicing yoga or engaging in shamanic rituals. Join me on a spiritual adventure – let’s find inner peace together. #HighSpirited #RehabJourney #ShamanInTraining',
       location: 'Nagano, JP',
       phoneNumber: '987-654-3210',
       preferences: {'theme': 'light'},
@@ -171,7 +171,7 @@ List<Event> getDummyEvents() {
     Event(
       eventId: 1,
       name: 'Flutter Workshop',
-      date: DateTime.now().add(Duration(days: 7)),
+      date: DateTime.now().add(const Duration(days: 7)),
       location: 'Online',
       description: 'An online workshop on Flutter development.',
       userId: 1,
@@ -179,7 +179,7 @@ List<Event> getDummyEvents() {
     Event(
       eventId: 2,
       name: 'Yoga Class',
-      date: DateTime.now().add(Duration(days: 14)),
+      date: DateTime.now().add(const Duration(days: 14)),
       location: 'Community Center',
       description: 'A relaxing yoga session.',
       userId: 1,
@@ -187,7 +187,7 @@ List<Event> getDummyEvents() {
     Event(
       eventId: 3,
       name: 'Photography 101',
-      date: DateTime.now().add(Duration(days: 5)),
+      date: DateTime.now().add(const Duration(days: 5)),
       location: 'City Park',
       description: 'A basic course on photography.',
       userId: 2,
@@ -195,7 +195,7 @@ List<Event> getDummyEvents() {
     Event(
       eventId: 4,
       name: 'Painting Exhibition',
-      date: DateTime.now().add(Duration(days: 10)),
+      date: DateTime.now().add(const Duration(days: 10)),
       location: 'Art Gallery',
       description: 'An exhibition of modern paintings.',
       userId: 2,
@@ -203,7 +203,7 @@ List<Event> getDummyEvents() {
     Event(
       eventId: 5,
       name: 'Travel Meetup',
-      date: DateTime.now().add(Duration(days: 20)),
+      date: DateTime.now().add(const Duration(days: 20)),
       location: 'Beach Resort',
       description: 'Meetup for travel enthusiasts.',
       userId: 3,
@@ -211,7 +211,7 @@ List<Event> getDummyEvents() {
     Event(
       eventId: 6,
       name: 'Hiking Adventure',
-      date: DateTime.now().add(Duration(days: 15)),
+      date: DateTime.now().add(const Duration(days: 15)),
       location: 'Mountain Trail',
       description: 'A hiking adventure in the mountains.',
       userId: 3,
@@ -219,7 +219,7 @@ List<Event> getDummyEvents() {
     Event(
       eventId: 7,
       name: 'Fitness Bootcamp',
-      date: DateTime.now().add(Duration(days: 2)),
+      date: DateTime.now().add(const Duration(days: 2)),
       location: 'Local Gym',
       description: 'A high-intensity fitness bootcamp.',
       userId: 4,
@@ -227,7 +227,7 @@ List<Event> getDummyEvents() {
     Event(
       eventId: 8,
       name: 'Nutrition Seminar',
-      date: DateTime.now().add(Duration(days: 8)),
+      date: DateTime.now().add(const Duration(days: 8)),
       location: 'Health Center',
       description: 'A seminar on healthy eating and nutrition.',
       userId: 4,
@@ -235,7 +235,7 @@ List<Event> getDummyEvents() {
     Event(
       eventId: 9,
       name: 'Cooking Class',
-      date: DateTime.now().add(Duration(days: 3)),
+      date: DateTime.now().add(const Duration(days: 3)),
       location: 'Community Kitchen',
       description: 'Learn to cook delicious meals.',
       userId: 5,
@@ -243,7 +243,7 @@ List<Event> getDummyEvents() {
     Event(
       eventId: 10,
       name: 'Baking Workshop',
-      date: DateTime.now().add(Duration(days: 12)),
+      date: DateTime.now().add(const Duration(days: 12)),
       location: 'Baking School',
       description: 'A workshop on baking cakes and pastries.',
       userId: 5,
@@ -251,7 +251,7 @@ List<Event> getDummyEvents() {
     Event(
       eventId: 11,
       name: 'Basketball Training',
-      date: DateTime.now().add(Duration(days: 5)),
+      date: DateTime.now().add(const Duration(days: 5)),
       location: 'Sports Complex',
       description: 'A basketball training session.',
       userId: 6,
@@ -259,7 +259,7 @@ List<Event> getDummyEvents() {
     Event(
       eventId: 12,
       name: 'Swimming Competition',
-      date: DateTime.now().add(Duration(days: 10)),
+      date: DateTime.now().add(const Duration(days: 10)),
       location: 'Aquatic Center',
       description: 'A local swimming competition.',
       userId: 6,
@@ -267,7 +267,7 @@ List<Event> getDummyEvents() {
     Event(
       eventId: 13,
       name: 'Music Concert',
-      date: DateTime.now().add(Duration(days: 3)),
+      date: DateTime.now().add(const Duration(days: 3)),
       location: 'Music Hall',
       description: 'A concert by local bands.',
       userId: 7,
@@ -275,7 +275,7 @@ List<Event> getDummyEvents() {
     Event(
       eventId: 14,
       name: 'Art Exhibition',
-      date: DateTime.now().add(Duration(days: 7)),
+      date: DateTime.now().add(const Duration(days: 7)),
       location: 'Art Gallery',
       description: 'An exhibition of contemporary art.',
       userId: 7,

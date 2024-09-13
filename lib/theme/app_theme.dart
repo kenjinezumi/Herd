@@ -46,10 +46,8 @@ class AppTheme {
     colorScheme: const ColorScheme.light(
       primary: primaryColor,
       secondary: secondaryColor,
-      background: backgroundColor,
       onPrimary: Colors.white,
       onSecondary: Colors.black,
-      onBackground: textColor,
       surface: Colors.white,
       onSurface: textColor,
     ),
@@ -66,7 +64,7 @@ class AppTheme {
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8.0),
       ),
-      focusedBorder: OutlineInputBorder(
+      focusedBorder: const OutlineInputBorder(
         borderSide: BorderSide(color: primaryColor),
       ),
     ),
@@ -107,10 +105,8 @@ class AppTheme {
     colorScheme: const ColorScheme.dark(
       primary: darkPrimaryColor,
       secondary: secondaryColor,
-      background: darkBackgroundColor,
       onPrimary: Colors.white,
       onSecondary: Colors.black,
-      onBackground: darkTextColor,
       surface: darkBackgroundColor,
       onSurface: darkTextColor,
     ),
@@ -127,7 +123,7 @@ class AppTheme {
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8.0),
       ),
-      focusedBorder: OutlineInputBorder(
+      focusedBorder: const OutlineInputBorder(
         borderSide: BorderSide(color: darkPrimaryColor),
       ),
     ),
