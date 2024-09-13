@@ -42,68 +42,67 @@ class HomeScreenState extends State<HomeScreen> {
             users.isNotEmpty
                 ? Column(
                     children: [
+                      // Swiping Stack
                       Expanded(
-                        child: Center(
-                          child: SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.9,
-                            height: MediaQuery.of(context).size.height * 0.7,
-                            child: SwipeableStack<User>(
-                              controller: _controller,
-                              dataSet: users,
-                              builder: (context, user, constraints) {
-                                return UserCard(user: user);
-                              },
-                              onSwipeCompleted: (user, direction) {
-                                print('User swiped: ${user.name}, Direction: $direction');
-                                if (users.indexOf(user) == users.length - 1) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      content: Text("No more users"),
-                                      duration: Duration(milliseconds: 500),
-                                    ),
-                                  );
-                                }
-                              },
-                              overlayBuilder: (context, constraints, user, direction, swipeProgress) {
-                                double clampedOpacity = swipeProgress.clamp(0.0, 1.0); // Ensure opacity is between 0.0 and 1.0
-                                return Center(
-                                  child: Opacity(
-                                    opacity: clampedOpacity,
-                                    child: Icon(
-                                      direction == SwipeDirection.right
-                                          ? Icons.thumb_up
-                                          : Icons.thumb_down,
-                                      color: direction == SwipeDirection.right ? Colors.green : Colors.red,
-                                      size: 100,
-                                    ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: SwipeableStack<User>(
+                            controller: _controller,
+                            dataSet: users,
+                            builder: (context, user, constraints) {
+                              return UserCard(user: user);
+                            },
+                            onSwipeCompleted: (user, direction) {
+                              if (users.indexOf(user) == users.length - 1) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text("No more users"),
+                                    duration: Duration(milliseconds: 500),
                                   ),
                                 );
-                              },
-                            ),
+                              }
+                            },
+                            overlayBuilder: (context, constraints, user, direction, swipeProgress) {
+                              double clampedOpacity = swipeProgress.clamp(0.0, 1.0); // Ensure opacity is between 0.0 and 1.0
+                              return Center(
+                                child: Opacity(
+                                  opacity: clampedOpacity,
+                                  child: Icon(
+                                    direction == SwipeDirection.right ? Icons.thumb_up : Icons.thumb_down,
+                                    color: direction == SwipeDirection.right ? Colors.green : Colors.red,
+                                    size: 100,
+                                  ),
+                                ),
+                              );
+                            },
                           ),
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          IconButton(
-                            icon: Icon(Icons.close, color: Colors.red, size: 40),
-                            onPressed: () {
-                              _controller.next(swipeDirection: SwipeDirection.left);
-                            },
-                          ),
-                          IconButton(
-                            icon: Icon(Icons.check, color: Colors.green, size: 40),
-                            onPressed: () {
-                              _controller.next(swipeDirection: SwipeDirection.right);
-                            },
-                          ),
-                        ],
+                      // Buttons for Swiping
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            IconButton(
+                              icon: const Icon(Icons.close, color: Colors.red, size: 40),
+                              onPressed: () {
+                                _controller.next(swipeDirection: SwipeDirection.left);
+                              },
+                            ),
+                            IconButton(
+                              icon: const Icon(Icons.check, color: Colors.green, size: 40),
+                              onPressed: () {
+                                _controller.next(swipeDirection: SwipeDirection.right);
+                              },
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   )
                 : const Center(
-                    child: Text('No users available'),
+                    child: CircularProgressIndicator(), // Progress indicator while loading
                   ),
             contacts.isNotEmpty
                 ? ListView.builder(
@@ -141,14 +140,14 @@ class UserCard extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),
-        child: SingleChildScrollView(
+        child: SingleChildScrollView(  // Add SingleChildScrollView here
           child: Column(
             children: [
               Image.asset(
                 user.profilePictureUrl,
                 fit: BoxFit.cover,
                 width: double.infinity,
-                height: MediaQuery.of(context).size.height * 0.5, // Adjust the height as needed
+                height: MediaQuery.of(context).size.height * 0.4, // Adjust the height for better fit
               ),
               Padding(
                 padding: const EdgeInsets.all(20.0),
@@ -185,60 +184,6 @@ class UserCard extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: const TextStyle(fontSize: 16),
                     ),
-                    const SizedBox(height: 10),
-                    if (user.likedBooks != null && user.likedBooks!.isNotEmpty) ...[
-                      const Text(
-                        'Liked Books:',
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(height: 5),
-                      Wrap(
-                        spacing: 4.0,
-                        runSpacing: 2.0,
-                        children: user.likedBooks!.map((book) {
-                          return Chip(
-                            label: Text(book, style: const TextStyle(fontSize: 12)),
-                            padding: const EdgeInsets.all(4.0),
-                          );
-                        }).toList(),
-                      ),
-                    ],
-                    const SizedBox(height: 10),
-                    if (user.groups != null && user.groups!.isNotEmpty) ...[
-                      const Text(
-                        'Groups:',
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(height: 5),
-                      Wrap(
-                        spacing: 4.0,
-                        runSpacing: 2.0,
-                        children: user.groups!.map((group) {
-                          return Chip(
-                            label: Text(group.toString(), style: const TextStyle(fontSize: 12)), // Assuming you want to display the group IDs. You might need to map the IDs to group names.
-                            padding: const EdgeInsets.all(4.0),
-                          );
-                        }).toList(),
-                      ),
-                    ],
-                    const SizedBox(height: 10),
-                    if (user.languages != null && user.languages!.isNotEmpty) ...[
-                      const Text(
-                        'Languages:',
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(height: 5),
-                      Wrap(
-                        spacing: 4.0,
-                        runSpacing: 2.0,
-                        children: user.languages!.map((language) {
-                          return Chip(
-                            label: Text(language, style: const TextStyle(fontSize: 12)),
-                            padding: const EdgeInsets.all(4.0),
-                          );
-                        }).toList(),
-                      ),
-                    ],
                   ],
                 ),
               ),
