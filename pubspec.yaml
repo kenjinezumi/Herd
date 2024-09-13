@@ -14,7 +14,7 @@ dependencies:
     sdk: flutter
   provider: ^6.0.4
   shared_preferences: ^2.0.15
-  swipeable_stack: ^0.4.3 # Use the latest version
+  swipeable_stack: ^0.4.3 
   font_awesome_flutter: ^10.4.0
   google_fonts: ^4.0.4
   flutter_secure_storage: ^8.0.0
@@ -24,7 +24,9 @@ dependencies:
   json_annotation: ^4.8.1
   hive: ^2.2.3
   hive_flutter: ^1.1.0
-  collection: ^1.16.0  # Add this line
+  collection: ^1.16.0  
+  flutter_native_splash: ^2.0.0
+  flutter_launcher_icons: ^0.10.0  
 
 dev_dependencies:
   flutter_test:
@@ -38,7 +40,10 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/images/app_icon.png"
+  image_path: "assets/logo/herd.png" # Path to your app logo
+  adaptive_icon_background: "#ffffff" # (Optional) Background color for Android adaptive icon
+
+
 flutter:
   uses-material-design: true
   # Enable generation of localized Strings from arb files.
@@ -53,4 +58,11 @@ flutter:
     - assets/images/cornelius.png
     - assets/logo/herd.png
     - assets/icons/google_logo.png
+
+flutter_native_splash:
+  color: "#ffffff" # Background color
+  image: assets/logo/herd.png # Path to your logo
+  android: true
+  ios: true
+  fullscreen: true # Optional, makes splash screen cover the full screen
 
